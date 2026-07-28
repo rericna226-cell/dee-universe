@@ -107,6 +107,10 @@
     });
   });
 
+  document.querySelectorAll('[data-video-open]').forEach((button) => {
+    button.addEventListener('click', () => openVideoDialog(button.closest('.hero')?.querySelector('video')));
+  });
+
   document.querySelectorAll('[data-atlas-open]').forEach((button) => {
     button.addEventListener('click', () => openVideoDialog(document.querySelector('.atlas-section .visual-frame video')));
   });
