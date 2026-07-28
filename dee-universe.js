@@ -1,4 +1,13 @@
 (() => {
+  const cleanPaths = {
+    '/index.html': '/home',
+    '/indexES.html': '/home-es',
+    '/privacy-en.html': '/privacy',
+    '/privacy.html': '/privacidad',
+  };
+  const cleanPath = cleanPaths[window.location.pathname];
+  if (cleanPath) window.history.replaceState(null, '', `${cleanPath}${window.location.search}${window.location.hash}`);
+
   const header = document.querySelector('.site-header');
   const menuToggle = document.querySelector('.menu-toggle');
   const mobileMenu = document.querySelector('.mobile-menu');

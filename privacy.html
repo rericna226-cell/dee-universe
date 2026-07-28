@@ -11,7 +11,7 @@
   <link rel="manifest" href="/site.webmanifest?v=2">
 
   <title>Aviso de Privacidad Integral | DEE Universe</title>
-  <link rel="canonical" href="/privacy-es">
+  <link rel="canonical" href="/privacidad">
 
   <meta
     name="description"
@@ -1192,13 +1192,17 @@
       <div>
         <div class="footer-title">Legal</div>
         <a href="/home-es#contact">Contacto</a>
-        <a href="/privacy-es">Aviso de privacidad</a>
+        <a href="/privacidad">Aviso de privacidad</a>
         <a href="/privacy" lang="en">English version</a>
       </div>
     </div>
   </footer>
 
   <script>
+    if (window.location.pathname === '/privacy.html') {
+      window.history.replaceState(null, '', `/privacidad${window.location.search}${window.location.hash}`);
+    }
+
     const toggle = document.querySelector('.nav-toggle');
     const mobileMenu = document.querySelector('.mobile-menu');
     const backdrop = document.querySelector('.mobile-backdrop');
