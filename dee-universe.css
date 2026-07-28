@@ -131,10 +131,11 @@ p { margin: 0; color: var(--muted); }
 .button--solid:hover { background: white; color: #061126; box-shadow: 0 12px 30px rgba(135,197,255,.18); }
 .button:disabled { cursor: wait; opacity: .72; transform: none; }
 
-.telemetry { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1px; width: 100%; margin-top: 64px; border: 1px solid var(--line); background: var(--line); }
-.telemetry-item { min-height: 105px; padding: 18px; background: rgba(7,14,28,.76); }
-.telemetry-item strong { display: block; color: var(--paper); font: 600 clamp(20px, 2.2vw, 30px)/1 Orbitron, sans-serif; }
-.telemetry-item span { display: block; margin-top: 9px; color: var(--muted); font-size: 11px; line-height: 1.35; }
+.thesis-cards { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; width: 100%; margin-top: 64px; padding-inline: max(22px, calc((100vw - var(--max)) / 2)); }
+.thesis-card { display: grid; align-content: start; gap: 12px; padding: 26px 24px; border: 1px solid var(--line-bright); border-radius: 13px; background: linear-gradient(160deg, rgba(16,32,58,.78), rgba(6,12,23,.72)); box-shadow: 0 24px 60px rgba(0,0,0,.28); }
+.thesis-card .eyebrow { margin-bottom: 0; }
+.thesis-card h3 { font-size: clamp(18px, 1.7vw, 22px); }
+.thesis-card p { color: var(--muted); font-size: 13px; line-height: 1.62; }
 
 .gradient-section { background: radial-gradient(circle at 10% 20%, rgba(54,111,255,.23), transparent 31%), radial-gradient(circle at 82% 60%, rgba(112,219,255,.12), transparent 27%), var(--ink-2); }
 .one-structure { display: grid; grid-template-columns: .88fr 1.12fr; align-items: center; gap: clamp(35px, 7vw, 110px); }
@@ -306,7 +307,6 @@ p { margin: 0; color: var(--muted); }
   .system-grid, .atlas-layout, .interpretation-layout, .technology-layout, .value-grid { gap: 38px; }
   .contact-layout { gap: 44px; }
   .capability-grid, .frontier-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .telemetry { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 }
 
 @media (max-width: 920px) {
@@ -321,8 +321,8 @@ p { margin: 0; color: var(--muted); }
   .section { padding-top: 96px; padding-bottom: 96px; }
   .hero { padding-top: calc(var(--header) + 46px); }
   .hero-content { width: min(100%, 780px); }
-  .telemetry { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 46px; }
-  .telemetry-item:nth-last-child(-n + 2) { grid-column: span 1; }
+  .thesis-cards { gap: 12px; margin-top: 46px; }
+  .thesis-card { padding: 22px 20px; }
   .one-structure, .system-grid, .atlas-layout, .interpretation-layout, .technology-layout, .value-grid, .contact-layout { grid-template-columns: 1fr; gap: 38px; }
   .one-structure > div:first-child, .atlas-copy { order: -1; }
   .visual-frame { max-width: 780px; }
@@ -344,8 +344,7 @@ p { margin: 0; color: var(--muted); }
   .hero-scrim { background: linear-gradient(90deg, rgba(2,5,13,.88), rgba(2,5,13,.67)), linear-gradient(0deg, rgba(2,5,13,.96), transparent 56%); }
   .hero-actions, .button-row { display: grid; grid-template-columns: 1fr; }
   .button { width: 100%; }
-  .telemetry { grid-template-columns: repeat(2, 1fr); margin-top: 37px; }
-  .telemetry-item:last-child { grid-column: span 2; }
+  .thesis-cards { grid-template-columns: 1fr; margin-top: 37px; }
   .one-structure, .system-grid, .atlas-layout, .interpretation-layout, .technology-layout, .value-grid, .contact-layout { grid-template-columns: 1fr; gap: 34px; }
   .one-structure > div:first-child, .atlas-copy { order: -1; }
   .flow-diagram { grid-template-columns: 1fr; gap: 18px; }
@@ -375,8 +374,6 @@ p { margin: 0; color: var(--muted); }
   .brand-copy strong { font-size: 10px; }
   .language-link { padding: 0 8px; }
   .privacy-link { padding: 0 8px; font-size: 10px; }
-  .telemetry { grid-template-columns: 1fr; }
-  .telemetry-item:last-child { grid-column: auto; }
   .spec-list { grid-template-columns: 1fr; }
   .site-header { gap: 8px; padding-right: 14px; padding-left: 14px; }
   .brand { gap: 7px; }
@@ -384,6 +381,7 @@ p { margin: 0; color: var(--muted); }
   .brand-logo { width: 116px; height: 41px; }
   .header-actions { gap: 6px; }
   .hero-content { padding-right: 18px; padding-left: 18px; }
+  .thesis-cards { padding-right: 18px; padding-left: 18px; }
   .section { padding-right: 18px; padding-left: 18px; }
   .visual-meta { right: 11px; left: 11px; font-size: 8px; }
   .contact-direct, .spec-panel, .ai-strip { padding: 16px; }
