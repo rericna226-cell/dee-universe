@@ -100,6 +100,10 @@
     dialogVideo.play().catch(() => {});
   };
 
+  const playHintLabel = (document.documentElement.lang || 'en').toLowerCase().startsWith('es')
+    ? 'VER VIDEO'
+    : 'PLAY VIDEO';
+
   document.querySelectorAll('.visual-frame video').forEach((video) => {
     const frame = video.closest('.visual-frame');
     if (!frame) return;
@@ -108,6 +112,14 @@
     frame.tabIndex = 0;
     frame.setAttribute('role', 'button');
     frame.setAttribute('aria-label', `Expand video: ${video.getAttribute('aria-label') || 'visual'}`);
+
+    if (!frame.querySelector('.play-hint')) {
+      const hint = document.createElement('span');
+      hint.className = 'play-hint';
+      hint.setAttribute('aria-hidden', 'true');
+      hint.textContent = playHintLabel;
+      frame.appendChild(hint);
+    }
     frame.addEventListener('click', () => openVideoDialog(video));
     frame.addEventListener('keydown', (event) => {
       if (event.key !== 'Enter' && event.key !== ' ') return;
