@@ -1,5 +1,3 @@
 # Clean, language-specific public routes for Cloudflare.
 /home /index.html 200
 /home-es /indexES.html 200
-/privacy /privacy-en.html 200
-/privacidad /privacy.html 200

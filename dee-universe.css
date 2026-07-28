@@ -310,6 +310,7 @@ p { margin: 0; color: var(--muted); }
   :root { --header: 70px; }
   .site-header { padding-right: 20px; padding-left: 20px; }
   .main-nav { display: none; }
+  .header-actions { margin-left: auto; }
   .menu-toggle { display: inline-flex; }
   .mobile-menu { position: fixed; inset: var(--header) 0 auto; z-index: 99; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 14px; padding: 14px 20px 18px; border-bottom: 1px solid var(--line); background: #050a16; transform: translateY(-130%); transition: transform .24s ease; box-shadow: 0 25px 45px rgba(0,0,0,.3); }
   .mobile-menu.is-open { transform: translateY(0); }

@@ -1,5 +1,6 @@
 .dev.vars
 .dev.vars.*
+.wrangler/
 .env
 .env.*
 !.dev.vars.example
