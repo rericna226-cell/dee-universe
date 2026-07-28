@@ -1,0 +1,12 @@
+REPLACE BEFORE SENDING
+
+[AUTHOR] / [AUTOR]
+[ORGANIZATION] / [ORGANIZACION]
+[WEBSITE] / [SITIO WEB]
+[EMAIL] / [CORREO]
+[NAME] / [NOMBRE]
+[INSTITUTE / COMPANY / FUND / JOURNAL]
+[SPECIFIC REASON FOR CONTACT]
+
+Do not send any message until all brackets have been removed.
+Use the final public website URL in the body of the email, not only in the signature.
