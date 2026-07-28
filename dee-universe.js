@@ -4,7 +4,8 @@
   const mobileMenu = document.querySelector('.mobile-menu');
   const scrollLinks = document.querySelectorAll('a[href^="#"]');
   const labButton = document.querySelector('[data-open-lab]');
-  const atlasDialog = document.getElementById('atlas-dialog');
+  const videoDialog = document.getElementById('video-dialog');
+  const dialogVideo = videoDialog?.querySelector('video');
 
   const setHeaderState = () => header?.classList.toggle('is-scrolled', window.scrollY > 12);
   setHeaderState();
@@ -77,16 +78,47 @@
     if (observedTab) activateTab(observedTab);
   });
 
-  document.querySelectorAll('[data-atlas-open]').forEach((button) => {
-    button.addEventListener('click', () => {
-      if (!atlasDialog) return;
-      atlasDialog.showModal();
-      atlasDialog.querySelector('video')?.play().catch(() => {});
+  const openVideoDialog = (sourceVideo) => {
+    if (!videoDialog || !dialogVideo || !sourceVideo) return;
+
+    dialogVideo.replaceChildren(...[...sourceVideo.querySelectorAll('source')].map((source) => source.cloneNode(true)));
+    dialogVideo.loop = sourceVideo.loop;
+    dialogVideo.muted = sourceVideo.muted;
+    dialogVideo.setAttribute('aria-label', sourceVideo.getAttribute('aria-label') || 'Expanded video');
+    videoDialog.setAttribute('aria-label', sourceVideo.getAttribute('aria-label') || 'Expanded video');
+    dialogVideo.load();
+    videoDialog.showModal();
+    dialogVideo.play().catch(() => {});
+  };
+
+  document.querySelectorAll('.visual-frame video').forEach((video) => {
+    const frame = video.closest('.visual-frame');
+    if (!frame) return;
+
+    frame.classList.add('is-expandable');
+    frame.tabIndex = 0;
+    frame.setAttribute('role', 'button');
+    frame.setAttribute('aria-label', `Expand video: ${video.getAttribute('aria-label') || 'visual'}`);
+    frame.addEventListener('click', () => openVideoDialog(video));
+    frame.addEventListener('keydown', (event) => {
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+      event.preventDefault();
+      openVideoDialog(video);
     });
   });
 
-  document.querySelectorAll('[data-modal-close]').forEach((button) => {
-    button.addEventListener('click', () => atlasDialog?.close());
+  document.querySelectorAll('[data-atlas-open]').forEach((button) => {
+    button.addEventListener('click', () => openVideoDialog(document.querySelector('.atlas-section .visual-frame video')));
   });
+
+  document.querySelectorAll('[data-modal-close]').forEach((button) => {
+    button.addEventListener('click', () => videoDialog?.close());
+  });
+
+  videoDialog?.addEventListener('click', (event) => {
+    if (event.target === videoDialog) videoDialog.close();
+  });
+
+  videoDialog?.addEventListener('close', () => dialogVideo?.pause());
 
 })();
