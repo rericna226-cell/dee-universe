@@ -4,3 +4,6 @@
 .env
 .env.*
 !.dev.vars.example
+
+.dev.vars*
+!.env.example
