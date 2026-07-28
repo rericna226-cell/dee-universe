@@ -1,0 +1,14 @@
+# Clean, language-specific public routes for Cloudflare Pages.
+/ /home 302
+/home /index.html 200
+/home-es /indexES.html 200
+/privacy /privacy-en.html 200
+/privacy-es /privacy.html 200
+
+# Legacy links remain valid without exposing the previous file names.
+/index.html /home 301
+/indexES.html /home-es 301
+/dee-universe-en.html /home 301
+/dee-universe.html /home-es 301
+/privacy-en.html /privacy 301
+/privacy.html /privacy-es 301

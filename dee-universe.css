@@ -127,6 +127,7 @@ p { margin: 0; color: var(--muted); }
 .button:hover { transform: translateY(-2px); border-color: var(--cyan); background: rgba(37,100,255,.22); }
 .button--solid { border-color: var(--ice); background: var(--paper); color: #061126; }
 .button--solid:hover { background: white; color: #061126; box-shadow: 0 12px 30px rgba(135,197,255,.18); }
+.button:disabled { cursor: wait; opacity: .72; transform: none; }
 
 .telemetry { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1px; width: 100%; margin-top: 64px; border: 1px solid var(--line); background: var(--line); }
 .telemetry-item { min-height: 105px; padding: 18px; background: rgba(7,14,28,.76); }
