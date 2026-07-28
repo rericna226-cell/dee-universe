@@ -344,7 +344,9 @@ p { margin: 0; color: var(--muted); }
   .hero-scrim { background: linear-gradient(90deg, rgba(2,5,13,.88), rgba(2,5,13,.67)), linear-gradient(0deg, rgba(2,5,13,.96), transparent 56%); }
   .hero-actions, .button-row { display: grid; grid-template-columns: 1fr; }
   .button { width: 100%; }
-  .thesis-cards { grid-template-columns: 1fr; margin-top: 37px; }
+  .thesis-cards { display: flex; grid-template-columns: none; gap: 14px; margin-top: 37px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: max(22px, calc((100vw - var(--max)) / 2)); -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .thesis-cards::-webkit-scrollbar { display: none; }
+  .thesis-card { flex: 0 0 84%; scroll-snap-align: start; }
   .one-structure, .system-grid, .atlas-layout, .interpretation-layout, .technology-layout, .value-grid, .contact-layout { grid-template-columns: 1fr; gap: 34px; }
   .one-structure > div:first-child, .atlas-copy { order: -1; }
   .flow-diagram { grid-template-columns: 1fr; gap: 18px; }
