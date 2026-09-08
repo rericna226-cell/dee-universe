@@ -2,8 +2,8 @@
   const cleanPaths = {
     '/index.html': '/home',
     '/indexES.html': '/home-es',
-    '/privacy-en.html': '/privacy',
-    '/privacy.html': '/privacidad',
+    '/privacy.html': '/privacy',
+    '/privacidad.html': '/privacidad',
   };
   const cleanPath = cleanPaths[window.location.pathname];
   if (cleanPath) window.history.replaceState(null, '', `${cleanPath}${window.location.search}${window.location.hash}`);
@@ -103,6 +103,36 @@
   const playHintLabel = (document.documentElement.lang || 'en').toLowerCase().startsWith('es')
     ? 'VER VIDEO'
     : 'PLAY VIDEO';
+
+  const autoplayVideos = [...document.querySelectorAll('video[autoplay]')];
+  const requestVideoPlayback = (video) => {
+    video.muted = true;
+    video.playsInline = true;
+    video.play().catch(() => {});
+  };
+
+  if ('IntersectionObserver' in window) {
+    const videoObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) requestVideoPlayback(entry.target);
+        else entry.target.pause();
+      });
+    }, { threshold: 0.18 });
+    autoplayVideos.forEach((video) => videoObserver.observe(video));
+  } else {
+    autoplayVideos.forEach(requestVideoPlayback);
+  }
+
+  const resumeVisibleVideos = () => {
+    autoplayVideos.forEach((video) => {
+      const rect = video.getBoundingClientRect();
+      if (rect.bottom > 0 && rect.top < window.innerHeight) requestVideoPlayback(video);
+    });
+  };
+  document.addEventListener('touchstart', resumeVisibleVideos, { once: true, passive: true });
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) resumeVisibleVideos();
+  });
 
   document.querySelectorAll('.visual-frame video').forEach((video) => {
     const frame = video.closest('.visual-frame');
